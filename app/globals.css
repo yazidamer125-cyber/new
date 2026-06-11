@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-navy-950 text-ink antialiased;
+}
+
+::selection {
+  @apply bg-accent/30;
+}
+
+/* Thin scrollbars that fit the dark theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: theme(colors.navy.700) transparent;
+}
+
+@layer components {
+  .panel {
+    @apply rounded-panel border border-navy-800 bg-navy-900;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-ink-muted;
+  }
+  .field-input {
+    @apply w-full rounded-lg border border-navy-700 bg-navy-950 px-3 py-2 text-sm text-ink placeholder:text-ink-muted/60 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-navy-950 transition hover:bg-accent-dark disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-navy-700 bg-navy-900 px-4 py-2 text-sm font-medium text-ink transition hover:border-accent/60 hover:text-accent disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-red-900/60 bg-red-950/40 px-4 py-2 text-sm font-medium text-red-300 transition hover:bg-red-900/40 disabled:opacity-50;
+  }
+}
