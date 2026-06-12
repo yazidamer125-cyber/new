@@ -1,0 +1,22 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": ["@/components/workers/*", "@/lib/db", "@/lib/db/*"],
+            "message": "Worker data and the DB layer are forbidden in public routes. (Allowed only under app/(dashboard), app/api, lib, scripts.)"
+          }
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["app/(dashboard)/**", "app/api/**", "lib/**", "components/**", "scripts/**", "middleware.ts"],
+      "rules": { "no-restricted-imports": "off" }
+    }
+  ]
+}

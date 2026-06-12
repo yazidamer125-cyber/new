@@ -1,0 +1,8 @@
+# WakilPro — private B2B platform. Only the landing page and the
+# invite-request form are crawlable. Nothing else exists publicly.
+User-agent: *
+Allow: /$
+Allow: /request-invite$
+Disallow: /
+
+# No sitemap on purpose: there is nothing else to index.
