@@ -11,10 +11,13 @@ Tailwind (RTL-first Arabic UI) · Vercel.
 
 ## Non-negotiable product rules (enforced in code)
 
-1. **No public worker catalog.** Worker profiles are visible only to authenticated, verified
+1. **No public worker catalog.** Full worker profiles are visible only to authenticated, verified
    organizations, and only through an active proposal or placement
    (`lib/db/guards.ts → canViewWorker()` is the single sanctioned path; CI greps `app/(public)`
-   and fails on any worker reference).
+   and fails on any worker reference). Verified recruitment offices additionally browse a
+   **redacted marketplace** (`/marketplace`) of available+consented workers across all agencies —
+   masked name, no photo, no passport, no exact DOB. Requesting a worker creates a proposal,
+   which is what unlocks the full profile. Every browse and request is audit-logged.
 2. **Signed consent before sharing.** A worker cannot leave `draft` without a consent document —
    enforced by the API (`assertWorkerTransition`), by proposal validation
    (`assertProposableWorkers`) **and** by a DB `CHECK` constraint.
