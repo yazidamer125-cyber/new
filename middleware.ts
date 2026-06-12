@@ -17,16 +17,16 @@ const PROTECTED_PREFIXES = [
   "/marketplace",
 ];
 
-// Public-only routes: redirect authenticated users straight to the dashboard.
-const AUTH_REDIRECT_PATHS = ["/", "/login", "/register"];
-
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const hasSession =
     req.cookies.has("better-auth.session_token") || req.cookies.has("__Secure-better-auth.session_token");
 
-  // Authenticated user landing on a public-only page → send to dashboard.
-  if (hasSession && AUTH_REDIRECT_PATHS.includes(pathname)) {
+  // Cookie holder landing on the public home → send to the app. Only "/" gets
+  // this cookie-presence shortcut: doing it for /login too would loop forever
+  // with a stale cookie (login → dashboard → server bounces back to login).
+  // /login does the same redirect server-side after a real session lookup.
+  if (hasSession && pathname === "/") {
     return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
