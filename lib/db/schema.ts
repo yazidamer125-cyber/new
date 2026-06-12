@@ -80,6 +80,8 @@ export const organizations = sqliteTable("organizations", {
     .default("pending"),
   rejectionReason: text("rejection_reason"),
   verifiedAt: integer("verified_at", { mode: "timestamp" }),
+  suspendedAt: integer("suspended_at", { mode: "timestamp" }),
+  suspensionReason: text("suspension_reason"),
   createdAt: createdAt(),
 });
 

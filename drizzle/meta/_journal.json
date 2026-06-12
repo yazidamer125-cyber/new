@@ -8,6 +8,13 @@
       "when": 1781185745686,
       "tag": "0000_noisy_logan",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1781269203110,
+      "tag": "0001_aberrant_nextwave",
+      "breakpoints": true
     }
   ]
 }

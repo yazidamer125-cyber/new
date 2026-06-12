@@ -30,6 +30,7 @@ const OFFICE_NAV: NavItem[] = [
 
 const ADMIN_NAV: NavItem[] = [
   { href: "/admin", label: "توثيق المنشآت", icon: "🛡" },
+  { href: "/admin/orgs", label: "إدارة المنشآت", icon: "🏢" },
   { href: "/admin/invitations", label: "الدعوات", icon: "✉" },
 ];
 
