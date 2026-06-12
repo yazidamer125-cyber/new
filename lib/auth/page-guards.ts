@@ -18,6 +18,7 @@ export async function requireVerifiedPage(): Promise<SessionContext & { org: Org
   const ctx = await requirePageContext();
   if (ctx.user.role === "platform_admin") redirect("/admin");
   if (!ctx.org) redirect("/login");
+  if (ctx.org.suspendedAt) redirect("/suspended");
   if (ctx.org.verificationStatus !== "verified") redirect("/onboarding");
   return ctx as SessionContext & { org: Organization };
 }

@@ -128,6 +128,17 @@ export const orgRejectSchema = z.object({
   reason: z.string().min(3).max(500),
 });
 
+export const orgEditSchema = z.object({
+  name: z.string().min(2).max(120).optional(),
+  country: z.string().min(2).max(60).optional(),
+  city: z.string().max(60).optional().nullable(),
+  licenseNumber: z.string().max(60).optional().nullable(),
+});
+
+export const orgSuspendSchema = z.object({
+  reason: z.string().min(3).max(500),
+});
+
 export const licenseSchema = z.object({
   licenseNumber: z.string().min(2).max(60),
   licenseDocKey: z.string().min(5).max(300),

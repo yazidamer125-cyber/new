@@ -56,6 +56,9 @@ export async function requireVerifiedOrg(): Promise<SessionContext & { org: Orga
   if (ctx.org.verificationStatus !== "verified") {
     throw new ApiError(403, "ORG_PENDING", "Your organization is pending license verification.");
   }
+  if (ctx.org.suspendedAt) {
+    throw new ApiError(403, "ORG_SUSPENDED", "Your organization account has been suspended.");
+  }
   return ctx as SessionContext & { org: Organization };
 }
 
