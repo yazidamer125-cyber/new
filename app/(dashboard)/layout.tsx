@@ -21,6 +21,7 @@ const AGENCY_NAV: NavItem[] = [
 
 const OFFICE_NAV: NavItem[] = [
   { href: "/dashboard", label: "نظرة عامة", icon: "▦" },
+  { href: "/marketplace", label: "سوق الكوادر", icon: "🛒" },
   { href: "/job-orders", label: "أوامر التوظيف", icon: "📋" },
   { href: "/proposals", label: "العروض الواردة", icon: "📨" },
   { href: "/placements", label: "الإجراءات وOKB", icon: "🛫" },

@@ -82,6 +82,12 @@ export const proposalCreateSchema = z.object({
   message: z.string().max(2000).optional(),
 });
 
+export const marketplaceRequestSchema = z.object({
+  workerId: z.string().min(1),
+  jobOrderId: z.string().min(1),
+  message: z.string().max(2000).optional(),
+});
+
 export const proposalStatusSchema = z.object({
   status: z.enum(["shortlisted", "accepted", "rejected", "withdrawn"]),
 });
