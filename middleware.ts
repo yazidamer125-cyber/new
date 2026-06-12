@@ -14,15 +14,26 @@ const PROTECTED_PREFIXES = [
   "/placements",
   "/admin",
   "/notifications",
+  "/marketplace",
 ];
+
+// Public-only routes: redirect authenticated users straight to the dashboard.
+const AUTH_REDIRECT_PATHS = ["/", "/login", "/register"];
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+  const hasSession =
+    req.cookies.has("better-auth.session_token") || req.cookies.has("__Secure-better-auth.session_token");
+
+  // Authenticated user landing on a public-only page → send to dashboard.
+  if (hasSession && AUTH_REDIRECT_PATHS.includes(pathname)) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
+
+  // Unauthenticated user trying to reach a protected page → send to login.
   if (!PROTECTED_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`))) {
     return NextResponse.next();
   }
-  const hasSession =
-    req.cookies.has("better-auth.session_token") || req.cookies.has("__Secure-better-auth.session_token");
   if (!hasSession) {
     const login = new URL("/login", req.url);
     login.searchParams.set("next", pathname);
